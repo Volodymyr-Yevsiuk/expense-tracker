@@ -8,7 +8,7 @@ export default class PostAddForm extends Component{
 
         this.state = {
             text: '',
-            money: 0
+            money: ''
         }
 
         this.onLabelChange = (e) => {
@@ -19,13 +19,13 @@ export default class PostAddForm extends Component{
 
         this.onSumChange = (e) => {
             this.setState({
-                money: +e.target.value
+                money: e.target.value
             })
         }
 
         this.onSubmit = (e) => {
             e.preventDefault();
-            this.props.onAdd(this.state.text, +this.state.money);
+            this.props.onAdd(this.state.text, this.state.money);
         }
     }
 
@@ -35,7 +35,7 @@ export default class PostAddForm extends Component{
                 <h5 className="title">Add transaction</h5>
                 <hr className="line"/>
                 <form onSubmit={this.onSubmit}>
-                    
+
                     <span>Text</span>
                     <input 
                         onChange={this.onLabelChange}
@@ -49,6 +49,7 @@ export default class PostAddForm extends Component{
                         type="number" 
                         className="enter-field" 
                         placeholder="Enter amount..."
+                        value={this.state.money}
                     />
                       
                     <button className="btn-add">Add transaction</button>

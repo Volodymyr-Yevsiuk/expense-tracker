@@ -27,14 +27,14 @@ export default class App extends Component{
         this.setState(({data, incomeMoney, expenseMoney, balance}) => {
             const newArr = [newItem, ...data];
             if (sum >= 0) {
-                incomeMoney = +(incomeMoney) + (+sum);
-                balance = +(balance) + (+sum);
+                incomeMoney = (+(incomeMoney) + (+sum)).toFixed(2);
+                balance = (+(balance) + (+sum)).toFixed(2);
                 if (balance === 0) {
                     balance = '0.00';
                 }
             } else {
-                expenseMoney = +(expenseMoney) + (+sum*(-1));
-                balance = +(balance) - (+sum*(-1));
+                expenseMoney = (+(expenseMoney) + (+sum*(-1))).toFixed(2);
+                balance = (+(balance) - (+sum*(-1))).toFixed(2);
                 if (balance === 0) {
                     balance = '0.00';
                 }
@@ -57,8 +57,8 @@ export default class App extends Component{
             ];
 
             if (data[index].cash >= 0) {
-                incomeMoney -= +(data[index].cash);
-                balance -= +(data[index].cash);
+                incomeMoney = (+incomeMoney - +(data[index].cash)).toFixed(2);
+                balance = (+(balance) - +(data[index].cash)).toFixed(2);
                 if (incomeMoney === 0){
                     incomeMoney = '0.00';
                     if (balance === 0) {
@@ -66,8 +66,8 @@ export default class App extends Component{
                     }
                 }
             } else {
-                expenseMoney -= +(data[index].cash*(-1));
-                balance += data[index].cash*(-1);
+                expenseMoney = (+expenseMoney - +(data[index].cash*(-1))).toFixed(2);
+                balance = (+(balance) + data[index].cash*(-1)).toFixed(2);
                 if (expenseMoney === 0){
                     expenseMoney = '0.00';
                     if (balance === 0) {
